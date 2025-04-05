@@ -18,6 +18,8 @@ resource "harvester_cloudinit_secret" "cloud-config" {
 
   user_data = templatefile("cloud-init.tmpl.yml", {
       public_key_openssh = data.harvester_ssh_key.mysshkey.public_key
+      tls_private_key = tls_private_key.github_key
+
     })
 }
 resource "harvester_virtualmachine" "loginvm" {
